@@ -21,7 +21,7 @@ function App() {
 
   const warning = () => {
     const warning =
-      "DO NOT USE ANY KEYS CREATED BY THIS APP, ESPECIALLY THOSE CREATED FROM THE RANDOM TEXT.  THERE IS NOT SUFFICIENT ENTROPHY TO CREATE A TRULY RANDOM PRIVATE KEY";
+      'DO NOT STORE REAL BITCOIN ON ANY KEYS CREATED BY THIS APP, ESPECIALLY THOSE CREATED FROM THE "RANDOM" TEXT.  THERE IS NOT SUFFICIENT ENTROPHY TO CREATE A TRULY RANDOM PRIVATE KEY';
     return (
       <div style={{ padding: "20px" }}>
         <h4 style={{ margin: "auto", color: "red", width: "80%" }}>
@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2>Bitoin Public Private Key Generator</h2>
+      <h2>Bitcoin Public Private Key Generator</h2>
       <TextField
         style={{ background: "white" }}
         name="text"
@@ -81,6 +81,10 @@ function App() {
           <>
             <hr />
             <div>
+              <h4 style={{ color: "blue" }}>
+                You can confirm your key pair by importing your private key on{" "}
+                <a href="https://blockchain.com/">Blockchain.com</a>
+              </h4>
               <br />
               <h3 style={{ color: "red" }}>DO NOT SHARE</h3>
               <img
