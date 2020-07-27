@@ -1,4 +1,5 @@
 const secureRandom = require("secure-random");
+const crypto = require("crypto");
 const sha256 = require("js-sha256");
 const ripemd160 = require("ripemd160");
 var EC = require("elliptic").ec;
@@ -6,8 +7,23 @@ const bs58 = require("bs58");
 
 var ec = new EC("secp256k1");
 
+const genPrivKeyFromText = (text, n = 100) => {
+  const privKey = crypto
+    .createHmac("sha512", Date.now())
+    .update(text)
+    .digest("hex");
+
+  let r = Math.floor(Math.random() * privKey.length);
+  let rotated = privKey.substring(r, privKey.length) + privKey.substring(0, r);
+
+  if (n > 0) {
+    return genPrivKeyFromText(rotated, n - 1);
+  }
+  return rotated.substring(0, 64);
+};
+
 const genPrivateKey = () => {
-  //Key must be within the range 0 and p where p = 2^256 – 2^32 – 977 for secp256k1
+  //Key must be between the range 0 and p where p = 2^256 – 2^32 – 977 for secp256k1
   const max = Buffer.from(
     "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364140",
     "hex"
@@ -55,6 +71,7 @@ const createPrivateKeyWIF = (privateKey) => {
 };
 
 module.exports = {
+  genPrivKeyFromText,
   genPrivateKey,
   genPublicKey,
   createPublicAddress,

@@ -4,6 +4,7 @@ import { TextField, Button, Container } from "@material-ui/core";
 import "./App.css";
 
 import {
+  genPrivKeyFromText,
   genPrivateKey,
   genPublicKey,
   createPublicAddress,
@@ -19,9 +20,11 @@ function App() {
     pubAddr: "",
   });
 
+  const [errMsg, setErrMsg] = useState("");
+
   const warning = () => {
     const warning =
-      'DO NOT STORE REAL BITCOIN ON ANY KEYS CREATED BY THIS APP, ESPECIALLY THOSE CREATED FROM THE "RANDOM" TEXT.  THERE IS NOT SUFFICIENT ENTROPHY TO CREATE A TRULY RANDOM PRIVATE KEY';
+      "Use the keys created from this app at your own risk. I will not be held responsible for any lost or stolen Bitcoin from the abuse, misuse, or misunderstanding of this app";
     return (
       <div style={{ padding: "20px" }}>
         <h4 style={{ margin: "auto", color: "red", width: "80%" }}>
@@ -35,13 +38,13 @@ function App() {
     setText(evt.target.value);
   };
 
-  const createInsecureKey = () => {
-    let secret = "this is a huge secret";
-    const privKey = crypto
-      .createHmac("sha256", secret)
-      .update(keys.privKey)
-      .digest("hex");
-    createKeys(privKey);
+  const createKeyFromText = (data, n = 100) => {
+    if (text.length < 32) {
+      setErrMsg("Text must be at least 32 characters long");
+    } else {
+      let privKey = genPrivKeyFromText(data);
+      createKeys(privKey);
+    }
   };
 
   const handleSubmit = () => {
@@ -54,29 +57,32 @@ function App() {
     let privAddr = createPrivateKeyWIF(privKey);
     let pubAddr = createPublicAddress(pubKey);
     setKeys({ privKey, pubKey, privAddr, pubAddr });
+    setErrMsg("");
   };
 
   return (
     <div className="App">
-      <h2>Bitcoin Public Private Key Generator</h2>
-      <TextField
-        style={{ background: "white" }}
-        name="text"
-        label="Random Text"
-        value={text}
-        onChange={handleChange}
-        variant="outlined"
-      />
-      <br />
-      <Button variant="contained" color="primary" onClick={createInsecureKey}>
-        Create From Text
-      </Button>
-      <h4>Or</h4>
-      <Button variant="contained" color="secondary" onClick={handleSubmit}>
-        Securely Generate
-      </Button>
-      {warning()}
       <Container>
+        <img src="logo.png" alt="bitcoin" />
+        <h2>Bitcoin Public Private Key Generator</h2>
+        <TextField
+          style={{ background: "white" }}
+          name="text"
+          label="Random Text"
+          value={text}
+          onChange={handleChange}
+          variant="outlined"
+        />
+        {errMsg ? <div style={{ color: "red" }}>{errMsg}</div> : <></>}
+        <br />
+        <Button variant="contained" color="primary" onClick={createKeyFromText}>
+          Generate From Text
+        </Button>
+        <h4>Or</h4>
+        <Button variant="contained" color="secondary" onClick={handleSubmit}>
+          Randomly Generate
+        </Button>
+        {warning()}
         {keys.pubAddr !== "" ? (
           <>
             <hr />
@@ -110,6 +116,10 @@ function App() {
         ) : (
           <></>
         )}
+        <h4 style={{ color: "blue" }}>
+          See the source code{" "}
+          <a href="https://github.com/GalaxysHub/BitcoinKeyGenerator">here</a>
+        </h4>
       </Container>
     </div>
   );
