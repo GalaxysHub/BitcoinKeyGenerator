@@ -22,7 +22,7 @@ function App() {
 
   const warning = () => {
     const warning =
-      "DO NOT USE AND KEYS CREATED BY THIS APP. ESPECIALLY THOSE CREATED FROM THE RANDOM TEXT. THERE IS NOT SUFFICIENT ENTROPHY TO CREATE A TRULY RANDOM PRIVATE KEY";
+      "DO NOT USE ANY KEYS CREATED BY THIS APP, ESPECIALLY THOSE CREATED FROM THE RANDOM TEXT.  THERE IS NOT SUFFICIENT ENTROPHY TO CREATE A TRULY RANDOM PRIVATE KEY";
     return (
       <div style={{ padding: "20px" }}>
         <h4 style={{ margin: "auto", color: "red", width: "80%" }}>
