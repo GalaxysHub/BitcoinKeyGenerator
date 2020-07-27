@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import crypto from "crypto";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Container } from "@material-ui/core";
 import "./App.css";
 
 import {
@@ -77,7 +77,7 @@ function App() {
         Securely Generate
       </Button>
       {warning()}
-      <div>
+      <Container>
         {keys.pubAddr !== "" ? (
           <>
             <hr />
@@ -88,7 +88,9 @@ function App() {
                 src={`https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${crypto.privAddr}`}
                 alt="privatekey"
               />
-              <div style={{ color: "red" }}>Private Key: </div>
+              <div style={{ color: "red", wordWrap: "break-word" }}>
+                Private Key:{" "}
+              </div>
               {keys.privAddr}
             </div>
             {warning()}
@@ -107,7 +109,7 @@ function App() {
         ) : (
           <></>
         )}
-      </div>
+      </Container>
     </div>
   );
 }
