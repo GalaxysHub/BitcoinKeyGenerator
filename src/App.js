@@ -39,7 +39,7 @@ function App() {
     let secret = "this is a huge secret";
     const privKey = crypto
       .createHmac("sha256", secret)
-      .update("I love cupcakes")
+      .update(keys.privKey)
       .digest("hex");
     createKeys(privKey);
   };
