@@ -1,5 +1,5 @@
-##Simple Bitcoin Public Private Key Generator
+## Simple Bitcoin Public Private Key Generator
 
 ### Do not use any of the keys generated from this app. Especially those created from your own "random" text.
 
-App Demo hosted at: bitcoinkeygen.netlify.app
+App Demo hosted at: https://bitcoinkeygen.netlify.app/
