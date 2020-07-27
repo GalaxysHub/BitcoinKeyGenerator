@@ -88,10 +88,8 @@ function App() {
                 src={`https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${crypto.privAddr}`}
                 alt="privatekey"
               />
-              <div style={{ color: "red", wordWrap: "break-word" }}>
-                Private Key:{" "}
-              </div>
-              {keys.privAddr}
+              <div style={{ color: "red" }}>Private Key: </div>
+              <span style={{ wordWrap: "break-word" }}>{keys.privAddr}</span>
             </div>
             {warning()}
             <hr />
