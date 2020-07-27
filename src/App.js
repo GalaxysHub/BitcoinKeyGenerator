@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import crypto from "crypto";
-import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button, Container } from "@material-ui/core";
 import "./App.css";
 
@@ -61,7 +60,7 @@ function App() {
     <div className="App">
       <h2>Bitoin Public Private Key Generator</h2>
       <TextField
-        id="outlined-basic"
+        style={{ background: "white" }}
         name="text"
         label="Random Text"
         value={text}
