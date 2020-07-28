@@ -24,7 +24,7 @@ function App() {
 
   const warning = () => {
     const warning =
-      "Use the keys created from this app at your own risk. I will not be held responsible for any lost or stolen Bitcoin from the abuse, misuse, or misunderstanding of this app";
+      "Use keys created from this app at your own risk. I am not responsible for any lost or stolen Bitcoin from the abuse, misuse, or misunderstanding of this app";
     return (
       <div style={{ padding: "20px" }}>
         <h4 style={{ margin: "auto", color: "red", width: "80%" }}>
