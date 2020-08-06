@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import crypto from "crypto";
 import { TextField, Button, Container } from "@material-ui/core";
 import "./App.css";
 
@@ -94,7 +93,7 @@ function App() {
               <br />
               <h3 style={{ color: "red" }}>DO NOT SHARE</h3>
               <img
-                src={`https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${crypto.privAddr}`}
+                src={`https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${keys.privAddr}`}
                 alt="privatekey"
               />
               <div style={{ color: "red" }}>Private Key: </div>
@@ -105,7 +104,7 @@ function App() {
             <h3 style={{ color: "red" }}>Receive Bitcoin Below</h3>
             <div>
               <img
-                src={`https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${crypto.pubAddr}`}
+                src={`https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${keys.pubAddr}`}
                 alt="publickey"
               />
               <div style={{ color: "red" }}>Public Key: </div>
